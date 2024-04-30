@@ -41,6 +41,16 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+// galelrie
+app.get('/gallery', (req, res) => {
+    res.render('gallery');
+});
+
+// galelrie
+app.get('/contacts', (req, res) => {
+    res.render('contacts');
+});
+
 // Stránka pro registraci
 app.get('/signup', (req, res) => {
     res.render('signup');

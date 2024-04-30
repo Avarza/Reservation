@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <a href="" class="logo"><img src="image/logo.png" alt=""></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="..//frontend/index.html">Domů</a></li>
+          <li><a href="login.html"id="active">Přihlášení</a></li>
+          <li><a href="reservation.html">Rezervace</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="contacts.html">Kontakty</a></li>
+        </ul>
+    </section>
+<section class="prihlaseni">
+    <div class="card">
+        <div class="card-content">
+            <div class="card-title">
+                <h2 class="login">Přihlášení</h2>
+                <div class="underline-title"></div>
+            </div>
+            <form method="post" class="form-login">
+                <label for="user-email" >
+                    Email
+                </label>
+                <input id="user-password" class="form-content" type="password" name="Heslo" required >
+
+                <label for="user-password">Heslo
+                </label>
+                <input id="user-password" class="form-content" type="password" name="Heslo" required >
+                <a href="#">
+                    Zapomenuté heslo?
+                </a>
+                <input id="submit-btn" type="submit" name="submit" value="Příhlášení" >
+            </form>
+        </div>
+    </div>
+    <div class="card card-padding">
+        <div class="card-content">
+            <div class="card-title">
+                <h2 class="login">Registrace</h2>
+                <div class="underline-title"></div>
+            </div>
+            <form method="post" class="form-login">
+                <label for="user-email" >
+                    Email
+                </label>
+                <input id="user-password" class="form-content" type="password" name="Heslo" required >
+                <label for="user-password">Heslo
+                </label>
+                <input id="user-password" class="form-content" type="password" name="Heslo" required >
+                <label for="user-password">Heslo znovu
+                </label>
+                <input id=  "user-password" class="form-content" type="password" name="Heslo" required >
+                <input id="submit-btn" type="submit" name="submit" value="Registrace">
+            </form>
+        </div>
+    </div>
+</section>
+<footer>
+    <section class="footer">
+        <div class="tretina">
+            <ul>
+                <li>
+                    <h3>Kontakty</h3>
+                </li>
+                <li><img src="image/telephone.png" alt="ikona telefon" class="icons">Telefon: +420 *** *** ***</li>
+                <li><img src="image/email.png" alt="ikona mail" class="icons">E-mail: reservation@reservation.cz
+                </li>
+            </ul>
+        </div>
+        <div class="tretina">
+            <ul>
+                <li>
+                    <h3>Sociání sítě</h3>
+                </li>
+                <li><img src="image/instagram.png" alt="instagram" class="icons"><a href="#">Instagram</a></li>
+                <li><img src="image/facebook.png" alt="facebook" class="icons"><a href="#">Facebook</a></li>
+                <li><img src="image/pinterest.png" alt="pinterest" class="icons"><a href="#">Pinterest</a></li>
+            </ul>
+        </div>
+        <div class="tretina">
+            <ul>
+                <li>
+                    <h3>O Nás</h3>
+                </li>
+                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas exercitationem nobis consectetur
+                    porro natus totam obcaecati inventore. Consequatur sequi ullam, eos impedit aliquam nostrum
+                    velit atque distinctio doloribus, saepe hic.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+</footer>
+
+</body>
+</html>

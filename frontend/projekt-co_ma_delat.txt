@@ -1,0 +1,11 @@
+login, registrace,
+
+ spuštění db ./mysqld --no-defaults
+zapnutí localostu ? asi... ->    ./httpd.exe
+
+isVerified: {
+    type: Boolean,
+    default: false},
+    emailToken: {
+        type: String,
+    }

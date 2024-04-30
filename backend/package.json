@@ -1,0 +1,11 @@
+{
+  "name": "reservation",
+  "version": "1.0.0",
+  "description": "best reservation system of all time :3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jitka Kroupová",
+  "license": "ISC"
+}

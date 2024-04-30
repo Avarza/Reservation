@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rezervace místností</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap"
@@ -14,15 +14,15 @@
 
 <body>
     <section class="header">
-        <a href="#" class="logo"><img src="image/logo.png" alt="logo"></a>
+        <a href="index.html" class="logo"><img src="image/logo.png" alt="logo"></a>
         <input class="menu-btn" type="checkbox" id="menu-btn">
         <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
         <ul class="menu">
-            <li><a href="/" id="active">Domů</a></li>
-            <li><a href="login ">Přihlášení</a></li>
-            <!-- <li><a href="reservation.html">Rezervace</a></li> -->
-            <li><a href="gallery">Galerie</a></li>
-            <li><a href="contacts">Kontakty</a></li>
+            <li><a href="index.html" id="active">Domů</a></li>
+            <li><a href="login.html">Přihlášení</a></li>
+            <li><a href="reservation.html">Rezervace</a></li>
+            <li><a href="gallery.html">Galerie</a></li>
+            <li><a href="contacts.html">Kontakty</a></li>
 
         </ul>
     </section>
@@ -33,7 +33,7 @@
             </h1>
             <p>
                 Rezervujte zde!
-            </p> <a href="login" class="btn " id="galerie">Přihlášení!</a>
+            </p> <a href="reservation.html" class="btn " id="galerie">Rezervuj!</a>
         </section>
     </header>
     <section class="galerie-home">
@@ -47,7 +47,7 @@
             <img src="image/pokoj5.jpg" alt="místnost1" class="image-gallery display-none" id="image4">
             <img src="image/pokoj6.jpg" alt="místnost1" class="image-gallery display-none" id="image5">
         </div>
-        <a href="gallery" class="btn " id="galerie">Do galerie!</a>
+        <a href="gallery.html" class="btn " id="galerie">Do galerie!</a>
     </section>
     <section class="reservation colorC ">
         <img src="image/darkPokoj.jpg" alt="" class="image-reservation">
@@ -59,7 +59,7 @@
                 eos
                 nisi voluptas dolorem odio sunt quod minima quae temporibus dolor fugit. Facilis tenetur minus illum
                 provident ut, ipsa facere magni dolorem repellat.</p>
-            <a href="reservation" class="btn " id="rezervace">Rezervuj!</a>
+            <a href="reservation.html" class="btn " id="rezervace">Rezervuj!</a>
         </div>
     </section>
     <section class="karty">
@@ -99,7 +99,7 @@
         <h2 class="colorC">
             Jak vám můžeme pomoci? </h2>
         <div class="contact-form">
-            <form action="/">
+            <form action="index.html">
                 <input type="text" id="fname" name="firstname" placeholder="Vaše Příjmení..">
                 <input type="text" id="lname" name="lastname" placeholder="Vaše Jméno..">
                 <textarea id="subject" name="subject" placeholder="Napište nám.."></textarea>

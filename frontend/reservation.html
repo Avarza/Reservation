@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervace</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <a href="" class="logo"><img src="image/logo.png" alt=""></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+          <li><a href="index.html" >Domů</a></li>
+          <li><a href="login.html">Přihlášení</a></li>
+          <li><a href="reservation.html"id="active">Rezervace</a></li>
+          <li><a href="gallery.html">Galerie</a></li>
+          <li><a href="contacts.html">Kontakty</a></li>
+        </ul>
+    </section>
+<header class="jumbotron-reservation">
+    <section class="reservation-form">
+       <h2>Rezervovat</h2>
+    <form action="reservation.php" method="post">
+        <div class="elem-group">
+          <label for="name">Jméno a Příjmení</label>
+          <input type="text" id="name" name="visitor_name" placeholder="Vaše jméno a příjmení..." pattern=[A-Z\sa-z]{3,20} required>
+        </div>
+        <div class="elem-group">
+          <label for="email">Váš e-mail</label>
+          <input type="email" id="email" name="visitor_email" placeholder="vasemail@email.com" required>
+        </div>
+        <div class="elem-group">
+          <label for="phone">Váš telefon</label>
+          <input type="tel" id="phone" name="visitor_phone" placeholder="+420 498 348 872" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4}) required>
+        </div>
+        <hr>
+        <div class="elem-group inlined">
+          <label for="adult">Počet dospělých</label>
+          <input type="number" id="adult" name="total_adults" placeholder="2" min="1" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="child">Počet dětí</label>
+          <input type="number" id="child" name="total_children" placeholder="2" min="0" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="checkin-date">Datum příjezdu</label>
+          <input type="date" id="checkin-date" name="checkin" required>
+        </div>
+        <div class="elem-group inlined">
+          <label for="checkout-date">Datum odjezdu</label>
+          <input type="date" id="checkout-date" name="checkout" required>
+        </div>
+        <div class="elem-group">
+          <label for="room-selection">Vyberte pokoj/ pokoje</label>
+          <select id="room-selection" name="room_preference" required>
+              <option value="">Vyberte pokoj</option>
+              <option value="connecting">Pokoj</option>
+              <option value="adjoining">Apartmán</option>
+              <option value="adjacent">Apartmán s výřivkou</option>
+          </select>
+        </div>
+        <hr>
+        <div class="elem-group">
+          <label for="message">Poznámka</label>
+          <textarea id="message" name="visitor_message" placeholder="Máte nějaké speciální požadavky?" required></textarea>
+        </div>
+        <input type="submit" value="Poslat">
+    </form>
+    </section></header>
+    <footer>
+        <section class="footer">
+            <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>Kontakty</h3>
+                    </li>
+                    <li><img src="image/telephone.png" alt="ikona telefon" class="icons">Telefon: +420 *** *** ***</li>
+                    <li><img src="image/email.png" alt="ikona mail" class="icons">E-mail: reservation@reservation.cz
+                    </li>
+                </ul>
+            </div>
+            <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>Sociání sítě</h3>
+                    </li>
+                    <li><img src="image/instagram.png" alt="instagram" class="icons"><a href="#">Instagram</a></li>
+                    <li><img src="image/facebook.png" alt="facebook" class="icons"><a href="#">Facebook</a></li>
+                    <li><img src="image/pinterest.png" alt="pinterest" class="icons"><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+            <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>O Nás</h3>
+                    </li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas exercitationem nobis consectetur
+obrázky z: https://pixabay.com
+                        velit atque distinctio doloribus, saepe hic.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>
