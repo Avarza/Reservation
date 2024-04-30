@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <a href="" class="logo"><img src="image/logo.png" alt=""></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn" />
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="/">Domů</a></li>
+            <li><a href="login">Přihlášení</a></li>
+            <!-- <li><a href="reservation">Rezervace</a></li> -->
+            <li><a href="gallery">Galerie</a></li>
+            <li><a href="contacs" id="active">Kontakty</a></li>
+        </ul>
+    </section>
+    <section class="jumbotron-contacts">
+        <div class="mapka-napul">
+            <div class="contact-form-contacts">
+                <h2> Spojte se s námi.</h2>
+                <form action="action_page.php">
+                    <input type="text" id="fname" name="firstname" placeholder="Vaše Příjmení..">
+                    <input type="text" id="lname" name="lastname" placeholder="Vaše Jméno..">
+                    <textarea id="subject" name="subject" placeholder="Napište nám.."></textarea>
+                    <input type="submit" value="Poslat">
+                </form>
+            </div>
+            <div class="mapka">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d40961.17317736199!2d15.771728314404294!3d50.08491403994477!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470dcced3bc48561%3A0x52343abfaa8a8f8e!2sState%20Castle%20Kun%C4%9Btick%C3%A1%20hora!5e0!3m2!1sen!2scz!4v1700128594797!5m2!1sen!2scz"
+                    style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+    </section>
+    <footer>
+        <section class="footer">
+            <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>Kontakty</h3>
+                    </li>
+                    <li><img src="/image/telephone.png" alt="ikona telefon" class="icons">Telefon: +420 *** *** ***</li>
+                    <li><img src="image/email.png" alt="ikona mail" class="icons">E-mail: reservation@reservation.cz
+                    </li>
+                </ul>
+            </div>
+            <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>Sociání sítě</h3>
+                    </li>
+                    <li><img src="image/instagram.png" alt="instagram" class="icons"><a href="#">Instagram</a></li>
+                    <li><img src="image/facebook.png" alt="facebook" class="icons"><a href="#">Facebook</a></li>
+                    <li><img src="image/pinterest.png" alt="pinterest" class="icons"><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+            <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>O Nás</h3>
+                    </li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas exercitationem nobis consectetur
+                        porro natus totam obcaecati inventore. Consequatur sequi ullam, eos impedit aliquam nostrum
+                        velit atque distinctio doloribus, saepe hic.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+</body>
+</html>

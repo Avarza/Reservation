@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervace místností</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;1,100;1,200;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <section class="header">
+        <a href="#" class="logo"><img src="image/logo.png" alt="logo"></a>
+        <input class="menu-btn" type="checkbox" id="menu-btn">
+        <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+        <ul class="menu">
+            <li><a href="/" id="active">Domů</a></li>
+            <li><a href="login ">Přihlášení</a></li>
+            <!-- <li><a href="reservation.html">Rezervace</a></li> -->
+            <li><a href="gallery">Galerie</a></li>
+            <li><a href="contacs">Kontakty</a></li>
+
+        </ul>
+    </section>
+    <header>
+        <section class="jumbotron" id="jumbotron">
+            <h1 class="jumbotron-nadpis">
+                Vítejte na našem webu
+            </h1>
+            <p>
+                Rezervujte zde!
+            </p> <a href="login" class="btn " id="galerie">Přihlášení!</a>
+        </section>
+    </header>
+    <section class="galerie-home">
+        <h2 class="subtitle colorC">
+            Galerie
+        </h2>
+        <div class="galerie"> <img src="image/pokoj1.jpg" alt="místnost1" class="image-gallery">
+            <img src="image/pokoj2.jpg" alt="místnost1" class="image-gallery" id="image1">
+            <img src="image/pokoj3.jpg" alt="místnost1" class="image-gallery" id="image2">
+            <img src="image/pokoj4.jpg" alt="místnost1" class="image-gallery display-none" id="image3">
+            <img src="image/pokoj5.jpg" alt="místnost1" class="image-gallery display-none" id="image4">
+            <img src="image/pokoj6.jpg" alt="místnost1" class="image-gallery display-none" id="image5">
+        </div>
+        <a href="gallery" class="btn " id="galerie">Do galerie!</a>
+    </section>
+    <section class="reservation colorC ">
+        <img src="image/darkPokoj.jpg" alt="" class="image-reservation">
+        <div class="reservation-text">
+            <h2 id="title-reservation">Rezervuj zde!</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus nobis minus quam, nisi doloremque
+                debitis
+                aperiam. Enim exercitationem saepe nihil, veniam quidem incidunt consectetur harum dolore, doloribus
+                eos
+                nisi voluptas dolorem odio sunt quod minima quae temporibus dolor fugit. Facilis tenetur minus illum
+                provident ut, ipsa facere magni dolorem repellat.</p>
+            <a href="reservation" class="btn " id="rezervace">Rezervuj!</a>
+        </div>
+    </section>
+    <section class="karty">
+        <h2> Co můžete očekávat?</h2>
+        <div class="karticky">
+            <div class="karta">
+                <h2 class="colorA">300</h2>
+                <h3>Spokojených zákazníků</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis ratione debitis numquam odio in
+                    magnam, et illo officiis consequatur doloribus laborum aut quidem ab omnis culpa velit, corrupti
+                    consequuntur sint.</p>
+            </div>
+            <div class="karta">
+                <h2 class="colorA">4.2</h2>
+                <h3>Průměrné hodnocení</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis ratione debitis numquam odio in
+                    magnam, et illo officiis consequatur doloribus laborum aut quidem ab omnis culpa velit, corrupti
+                    consequuntur sint.</p>
+            </div>
+            <div class="karta">
+                <h2 class="colorA">5</h2>
+                <h3>Budov</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis ratione debitis numquam odio in
+                    magnam, et illo officiis consequatur doloribus laborum aut quidem ab omnis culpa velit, corrupti
+                    consequuntur sint.</p>
+            </div>
+            <div class="karta">
+                <h2 class="colorA">57</h2>
+                <h3>Pokojů</h3>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nobis ratione debitis numquam odio in
+                    magnam, et illo officiis consequatur doloribus laborum aut quidem ab omnis culpa velit, corrupti
+                    consequuntur sint.</p>
+            </div>
+        </div>
+    </section>
+    <section class="form">
+        <h2 class="colorC">
+            Jak vám můžeme pomoci? </h2>
+        <div class="contact-form">
+            <form action="/">
+                <input type="text" id="fname" name="firstname" placeholder="Vaše Příjmení..">
+                <input type="text" id="lname" name="lastname" placeholder="Vaše Jméno..">
+                <textarea id="subject" name="subject" placeholder="Napište nám.."></textarea>
+                <input type="submit" value="Poslat">
+            </form>
+        </div>
+    </section>
+    <footer>
+        <section class="footer">
+            <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>Kontakty</h3>
+                    </li>
+                    <li><img src="image/telephone.png" alt="ikona telefon" class="icons">Telefon: +420 *** *** ***</li>
+                    <li><img src="image/email.png" alt="ikona mail" class="icons">E-mail: reservation@reservation.cz
+                    </li>
+                </ul>
+            </div>
+            <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>Sociání sítě</h3>
+                    </li>
+                    <li><img src="image/instagram.png" alt="instagram" class="icons"><a href="#">Instagram</a></li>
+                    <li><img src="image/facebook.png" alt="facebook" class="icons"><a href="#">Facebook</a></li>
+                    <li><img src="image/pinterest.png" alt="pinterest" class="icons"><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+                <div class="tretina">
+                <ul>
+                    <li>
+                        <h3>O Nás</h3>
+                    </li>
+                    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas exercitationem nobis consectetur
+                        porro natus totam obcaecati inventore. Consequatur sequi ullam, eos impedit aliquam nostrum
+                        velit atque distinctio doloribus, saepe hic.</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+</body>
+
+</html>
