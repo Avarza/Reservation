@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vyhledávání ubytování</title>
+</head>
+<body>
+    <h1>Vyhledávání ubytování</h1>
+    
+    <form action="/search" method="GET">
+        <label for="search">Vyhledat ubytování:</label>
+        <input type="text" id="search" name="search">
+        
+        <label for="availability">Dostupnost:</label>
+        <select id="availability" name="availability">
+            <option value="all">Všechno</option>
+            <option value="available">Dostupné</option>
+            <option value="unavailable">Nedostupné</option>
+        </select>
+        
+        <label for="price">Cena (max):</label>
+        <input type="number" id="price" name="price" min="0">
+        
+        <label for="rating">Hodnocení (min):</label>
+        <input type="number" id="rating" name="rating" min="0" max="5">
+        
+        <label for="sort">Řadit podle:</label>
+        <select id="sort" name="sort">
+            <option value="name_asc">Název (A-Z)</option>
+            <option value="name_desc">Název (Z-A)</option>
+            <option value="price_asc">Cena (nejlevnější)</option>
+            <option value="price_desc">Cena (nejdražší)</option>
+            <option value="rating_desc">Hodnocení (nejlepší)</option>
+        </select>
+        
+        <button type="submit">Hledat</button>
+    </form>
+
+    <h2>Výsledky vyhledávání:</h2>
+
+    <% if (pokoje.length > 0) { %>
+        <ul>
+            <% pokoje.forEach(pokoj => { %>
+                <li>
+                    <h3><%= pokoj.nazev %></h3>
+                    <p><%= pokoj.popis %></p>
+                    <p>Cena: <%= pokoj.cena %> Kč</p>
+                    <p>Hodnocení: <%= pokoj.hodnocení %></p>
+                    <p><a href="/room/<%= pokoj._id %>">Zobrazit detail</a></p>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else { %>
+        <p>Žádné výsledky nebyly nalezeny.</p>
+    <% } %>
+    
+</body>
+</html>

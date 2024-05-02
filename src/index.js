@@ -46,9 +46,13 @@ app.get('/gallery', (req, res) => {
     res.render('gallery');
 });
 
-// galelrie
+// galerie
 app.get('/contacts', (req, res) => {
     res.render('contacts');
+});
+//stránka pro vyhledávání
+app.get('/search', (req, res) => {
+    res.render('search');
 });
 
 // Stránka pro registraci
@@ -65,10 +69,15 @@ app.get('/login', (req, res) => {
 app.get('/reset-password', (req, res) => {
     res.render('reset-password');
 });
-// Stránka pro reset hesla
+// Stránka pro přidání pokoje
+app.get('/add-room', (req, res) => {
+    res.render('add-room');
+});
+// Stránka pro verifikaci emailu
 app.get('/verify', (req, res) => {
     res.render('verify-email');
 });
+
 
 // Registrace uživatele
 app.post('/signup', async (req, res) => {
@@ -165,6 +174,46 @@ router.post('/reset-password', async (req, res) => {
 module.exports = router;
 
 
+// Importovat model Pokoj
+const Pokoj = require('./models/Pokoj');
+
+// Obsluha POST požadavku na přidání pokoje
+app.post('/add-room', async (req, res) => {
+    try {
+        // Získání dat z POST požadavku
+        const { nazev, popis, cena, fotky } = req.body;
+
+        // Vytvoření nového pokoje
+        const novyPokoj = new Pokoj({
+            nazev,
+            popis,
+            cena,
+            fotky: fotky.split(',') // Pokud jsou URL adresy fotek oddělené čárkou
+        });
+
+        // Uložení nového pokoje do databáze
+        await novyPokoj.save();
+
+        // Odeslání odpovědi klientovi
+        res.send('Pokoj byl úspěšně přidán.');
+    } catch (error) {
+        // Odeslání chybové odpovědi v případě chyby
+        console.error('Chyba při přidávání pokoje:', error);
+        res.status(500).send('Došlo k chybě při přidávání pokoje.');
+    }
+});
+// Nějaká cesta v aplikaci, kde se vykresluje šablona
+app.get('/search', (req, res) => {
+    // Nějaká logika pro získání seznamu pokoju z databáze nebo jiného zdroje
+    const pokoje = [
+        { nazev: "Pokoj 1", popis: "Popis pokoje 1", cena: 100, hodnocení: 4.5, _id: "1" },
+        { nazev: "Pokoj 2", popis: "Popis pokoje 2", cena: 120, hodnocení: 4.7, _id: "2" },
+        // Další pokoje...
+    ];
+
+    // Předání dat do šablony
+    res.render('search', { pokoje: pokoje });
+});
 
 app.listen(PORT, () => {
     console.log(`Server běží na adrese http://localhost:${PORT}`);
