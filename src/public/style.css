@@ -808,32 +808,9 @@ border-radius: .1rem;
   background-color: rgba(0, 0, 0, 0.107);
   color: black;
 }
-.container {
-  display: flex;
-justify-content: space-evenly;
 
-}
 
-.polovina p, .polovina a, .polovina h2
-{
-  color: whitesmoke ;
-  text-transform: none;
-}
-.polovina{
-  height: 70vh;
-  width: 45rem;
-  border: black solid .1rem;
-  border-radius: .3rem;
-  margin: 1rem;
-  background-color: #1A1A1A;
-  padding: 1.5rem;
-  
-}
-.polovina:hover {
-  background-color: #2c2c2c;
-  box-shadow: 3px 3px 5px black;
 
-}
 .form-login {
   background-image: url(/image/background.jpg);
   background-repeat: no-repeat;
@@ -856,5 +833,31 @@ input::placeholder {
   background-color: #967E4E;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.192);
 
+}
+.kategorie {
+  padding-top: 10rem;
+}
+.category-images img {
+  cursor: pointer;
+  border: 2px solid transparent;
+  width: 3rem;
+  background-color: #725e37;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.category-images img.selected {
+  
+background-color: #967E4E;
+}
+#fotky-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#fotky-preview img {
+  max-width: 15rem;
+  max-height: 15rem;
 }
 

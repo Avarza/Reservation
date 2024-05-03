@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Přidat pokoj</title>
+    <link rel="stylesheet" href="/style.css">
+
 </head>
 <body>
     <h1>Přidat nový pokoj</h1>
-    <form action="/add-room" method="POST">
+    <form action="/add-room" method="POST" id="categoryForm">
         <label for="nazev">Název pokoje:</label>
-        <input type="text" id="nazev" name="nazev" required><br>
+<input type="text" id="nazev" name="nazev" required>
+<br>
 
         <label for="popis">Popis:</label>
         <textarea id="popis" name="popis" required></textarea><br>
@@ -17,10 +20,60 @@
         <label for="cena">Cena za noc:</label>
         <input type="number" id="cena" name="cena" required><br>
 
-        <label for="fotky">URL adresy fotek (oddělené čárkou):</label>
-        <input type="text" id="fotky" name="fotky" required><br>
+      
+            <label for="kategorie">Vyberte kategorii:</label>
+            <input type="hidden" id="selectedCategory" name="selectedCategory">
+            <div class="category-images">
+                <img src="../image/camping.png" alt="Apartmán" data-category="camping">
+                <img src="../image/buildings.png" alt="Apartmán" data-category="flat">
+                <img src="../image/house.png" alt="Apartmán" data-category="house">
+                <img src="../image/windmill.png" alt="Apartmán" data-category="windmill">
 
+            </div>
+        <br>
+
+        <label for="fotky">Fotky:</label>
+        <input type="file" id="fotky" name="fotky" accept="image/*" multiple>
+        <div id="fotky-preview"></div>
         <button type="submit">Přidat pokoj</button>
     </form>
+    <script>
+   document.addEventListener('DOMContentLoaded', () => {
+    const images = document.querySelectorAll('.category-images img');
+    const selectedCategoryInput = document.getElementById('selectedCategory');
+
+    images.forEach(image => {
+        image.addEventListener('click', () => {
+            const category = image.dataset.category;
+            selectedCategoryInput.value = category;
+            // Odstranění třídy 'selected' ze všech obrázků
+            images.forEach(img => img.classList.remove('selected'));
+            // Přidání třídy 'selected' pouze kliknutému obrázku
+            image.classList.add('selected');
+        });
+    });
+});
+document.addEventListener('DOMContentLoaded', () => {
+            const fotkyInput = document.getElementById('fotky');
+            const fotkyPreview = document.getElementById('fotky-preview');
+
+            fotkyInput.addEventListener('change', (event) => {
+                fotkyPreview.innerHTML = ''; // Vyčištění předchozích náhledů
+
+                const files = event.target.files;
+                for (const file of files) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.alt = file.name;
+                        fotkyPreview.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+
 </body>
 </html>

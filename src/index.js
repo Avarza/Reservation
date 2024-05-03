@@ -173,7 +173,6 @@ router.post('/reset-password', async (req, res) => {
 
 module.exports = router;
 
-
 // Importovat model Pokoj
 const Pokoj = require('./models/Pokoj');
 
@@ -204,15 +203,30 @@ app.post('/add-room', async (req, res) => {
 });
 // Nějaká cesta v aplikaci, kde se vykresluje šablona
 app.get('/search', (req, res) => {
-    // Nějaká logika pro získání seznamu pokoju z databáze nebo jiného zdroje
-    const pokoje = [
-        { nazev: "Pokoj 1", popis: "Popis pokoje 1", cena: 100, hodnocení: 4.5, _id: "1" },
-        { nazev: "Pokoj 2", popis: "Popis pokoje 2", cena: 120, hodnocení: 4.7, _id: "2" },
-        // Další pokoje...
-    ];
+ 
 
     // Předání dat do šablony
     res.render('search', { pokoje: pokoje });
+});
+
+// Nastavení EJS jako view engine
+app.set('view engine', 'ejs');
+
+// Předpokládáme, že Mongoose je již inicializováno a máte definovaný model Pokoj
+
+app.get('/search', async (req, res) => {
+    try {
+        const query = req.query.query; // Získání vyhledávacího dotazu z URL parametru
+
+        // Vyhledání pokoju v MongoDB kolekci pokojs
+        const pokoje = await Pokoj.find();
+
+        // Odeslání nalezených pokoju do šablony EJS pro zobrazení
+        res.render('search', { pokoje: pokoje });
+    } catch (error) {
+        console.error('Chyba při vyhledávání pokoju:', error);
+        res.status(500).send('Došlo k chybě při vyhledávání pokoju.');
+    }
 });
 
 app.listen(PORT, () => {
