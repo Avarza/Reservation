@@ -1,25 +1,31 @@
-<!-- search.ejs -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Výsledky vyhledávání</title>
 </head>
+
 <body>
-    <h1>Výsledky vyhledávání</h1>
-    <% if (pokoje && pokoje.length > 0) { %>
+    <h1>Výsledky vyhledávání</h1> 
+    <!-- nefunguje mrcha -->
+    <% if (pokoje && pokoje.length> 0) { %>
         <ul>
-            <% pokoje.forEach(pokoj => { %>
+            <% pokoje.forEach(pokoj=> { %>
                 <li>
-                    <h3><%= pokoj.nazev %></h3>
-                    <p><%= pokoj.popis %></p>
-                    <!-- Zde můžete zobrazit další informace o pokoju -->
+                    <h3>
+                        <%= pokoj.nazev %>
+                    </h3>
+                    <p>
+                        <%= pokoj.popis %>
+                    </p>
                 </li>
-            <% }) %>
+                <% }) %>
         </ul>
-    <% } else { %>
-        <p>Žádné výsledky nebyly nalezeny.</p>
-    <% } %>
+        <% } else { %>
+            <p>Žádné výsledky nebyly nalezeny.</p>
+            <% } %>
 </body>
+
 </html>

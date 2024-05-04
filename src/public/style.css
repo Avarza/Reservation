@@ -1127,6 +1127,7 @@ input::placeholder {
   padding: 1rem;
   background-color: #725e37;
 }
+
 .add-room-nadpis {
   color: white;
   display: flex;
@@ -1134,11 +1135,13 @@ input::placeholder {
   padding: 1rem;
   font-size: 3rem;
 }
+
 .categoryForm {
   width: 30%;
 }
 
-.btn, input[type="file"] {
+.btn,
+input[type="file"] {
   padding: 1rem;
   border-radius: .2rem;
   background-color: #1B1B1B;
@@ -1160,13 +1163,16 @@ input[type="file"] {
 input[type="file"]:active {
   outline: none;
 }
+
 input[type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }
+
 .label-fotografie-add-room {
   background-color: rgb(42, 42, 42);
   padding: 1rem;
 }
+
 .container-add-room {
   width: 90%;
   margin: auto;

@@ -80,13 +80,13 @@ app.post('/signup', async (req, res) => {
         const { name, email, password } = req.body;
         const existingUser = await User.findOne({ email });
         // Kontrola délky hesla
-          if (password.length < 8) {
-             return res.status(400).send("Heslo musí mít alespoň 8 znaků.");
-         }
+        if (password.length < 8) {
+            return res.status(400).send("Heslo musí mít alespoň 8 znaků.");
+        }
 
         // Kontrola  různých typů znaků
-          if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
-              return res.status(400).send("Heslo musí obsahovat minimálně jedno velké písmeno, jedno malé písmeno, jednu číslici a jeden speciální znak.");
+        if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
+            return res.status(400).send("Heslo musí obsahovat minimálně jedno velké písmeno, jedno malé písmeno, jednu číslici a jeden speciální znak.");
         }
 
         if (existingUser) {
@@ -219,8 +219,7 @@ const tokenSchema = new mongoose.Schema({
 
 // model Tokenu
 const Token = mongoose.model('Token', tokenSchema);
-
-module.exports = Token;
+ 
 
 
 app.use(bodyParser.urlencoded({ extended: true }));

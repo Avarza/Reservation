@@ -31,7 +31,6 @@
                     <div class="slide"><img src="..//image/vm2.jpg" alt="Pokoj 2" onclick="openFullscreen(this);"></div>
                     <div class="slide"><img src="..//image/dum2.jpg" alt="Pokoj 3" onclick="openFullscreen(this);">
                     </div>
-                    <!-- Další obrázky -->
                 </div>
                 <button class="next" onclick="plusSlides(1)">&#10095;</button>
             </div>
@@ -86,13 +85,16 @@
     </section>
 
     <section class="rezervace">
-    <div class="prijezd">  <h4>Datum příjezdu</h4>
-        <div id="arrival-calendar" class="calendar"></div></div>
-<div class="odjezd">
-        <h4> Datum odjezdu
-</h4>
-    <div id="departure-calendar" class="calendar"></div></div>
-    
+        <div class="prijezd">
+            <h4>Datum příjezdu</h4>
+            <div id="arrival-calendar" class="calendar"></div>
+        </div>
+        <div class="odjezd">
+            <h4> Datum odjezdu
+            </h4>
+            <div id="departure-calendar" class="calendar"></div>
+        </div>
+
     </section>
     <button type="submit" class="btn flex">Ověřit dostupnost</button>
 
@@ -144,7 +146,7 @@
             inline: true,
             dateFormat: 'Y-m-d',
             onClose: function (selectedDates, dateStr, instance) {
-                // Po uzavření kalendáře při příjezdu omezíme možné datum odjezdu
+
                 if (selectedDates.length > 0) {
                     const selectedDate = new Date(selectedDates[0]);
                     departureCalendar.set('minDate', selectedDate);
@@ -156,7 +158,7 @@
             inline: true,
             dateFormat: 'Y-m-d',
             onClose: function (selectedDates, dateStr, instance) {
-                // Po uzavření kalendáře při odjezdu nastavíme datum odjezdu na vybrané datum, pokud je větší než datum příjezdu
+                // datum odjezdu > příjezdu
                 if (selectedDates.length > 0) {
                     const selectedDate = new Date(selectedDates[0]);
                     if (selectedDate < arrivalDate) {
