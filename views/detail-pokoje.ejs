@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Domů</title>
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 </head>
+
 <body class="body">
     <div class="container">
         <section class="header">
@@ -15,58 +18,157 @@
             <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
             <ul class="menu">
                 <li><a href="add-room ">Chci být hostitel</a></li>
-    
+
             </ul>
         </section>
-   <section class="kategorie">     <!-- HTML pro tlačítka kategorie -->
-<button class="btn" data-category="dum">Dům</button>
-<button class="category-button" data-category="byt">Byt</button>
-<button class="category-button" data-category="vetrny-mlyn">Větrný mlýn</button>
-<button class="category-button" data-category="stan">Stan</button>
+        <div class="container detail">
 
-<!-- HTML pro seznam pokoje -->
-<div id="room-list">
-  <div class="room karta-pokoj" data-category="dum">
-  <img src="../image/pokoj1.jpg" alt="pokoj-interier">
-    <h3>Dum</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae pariatur deleniti distinctio explicabo eveniet nesciunt repudiandae error tempore voluptatum dicta, laudantium neque praesentium aliquid quaerat dolore blanditiis excepturi, voluptatem eligendi.</p>
-<p class="hodnoceni">
 
-</p>
-<a href="detail-pokoje" class="proklikNaDetail"></a> 
-</div>
-  <div class="room karta-pokoj" data-category="byt">Dvoulůžkový pokoj 1</div>
-  <div class="room karta-pokoj" data-category="vetrny-mlyn">Apartmán 1</div>
-  <div class="room karta-pokoj" data-category="stan">stan</div>
+            <div class="gallery-detail">
+                <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+                <div class="slides">
+                    <div class="slide"><img src="..//image/vm.jpg" alt="Pokoj 1" onclick="openFullscreen(this);"></div>
+                    <div class="slide"><img src="..//image/vm2.jpg" alt="Pokoj 2" onclick="openFullscreen(this);"></div>
+                    <div class="slide"><img src="..//image/dum2.jpg" alt="Pokoj 3" onclick="openFullscreen(this);">
+                    </div>
+                    <!-- Další obrázky -->
+                </div>
+                <button class="next" onclick="plusSlides(1)">&#10095;</button>
+            </div>
 
-  <!-- Další pokoje -->
-</div></section>
-<script>
-    // Vybere všechny tlačítka kategorie
-const categoryButtons = document.querySelectorAll('.category-button');
+            <div id="myModal" class="modal">
+                <span class="close" onclick="closeFullscreen();">&times;</span>
+                <img class="modal-content" id="img01">
+            </div>
+        </div>
+        <section class="detail-pokoje">
+            <div class="text-detail">
+                <h2>Větrný mlýn</h2>
+                <p class="strucnypopis">
+                    4 hosté ◦ 2 ložnice ◦ 3 lůžka ◦ 2 koupelny
+                </p>
+                <p class="hodnoceni">
+                    ⭐⭐⭐⭐⭐ (5)
+                </p>
 
-// Připojí posluchače událostí na každé tlačítko kategorie
-categoryButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const category = button.dataset.category; // Získá hodnotu data-category atributu
+                <p>
+                    Náš útulný byt větrného mlýna je ztělesněním rustikálního pohodlí a moderní elegance. S úctou k
+                    historii
+                    tohoto unikátního prostoru jsme ho proměnili na útulné obydlí s veškerým komfortem. Rozkládá se na 2
+                    podlažích a nabízí 2 ložnice, 2 koupelny a obývací prostor s otevřeným plánem. Plně vybavená kuchyně
+                    dodává našemu domovu praktičnost a pohodlí, zatímco dřevěné podlahy dotvářejí atmosféru tepla a
+                    útulnosti.
 
-    // Skryje všechny pokoje, které neodpovídají vybrané kategorii
-    const rooms = document.querySelectorAll('.room');
-    rooms.forEach(room => {
-      const roomCategory = room.dataset.category; // Získá hodnotu data-category atributu pokoje
-      if (roomCategory !== category) {
-        room.style.display = 'none';
-      } else {
-        room.style.display = 'block';
-      }
-    });
-  });
-});
+                    Vstupující do tohoto půvabného bytu, okouzlí vás vkusný moderní design, který harmonicky splyne s
+                    historickými prvky mlýna. Velká okna v obývacím pokoji nabízejí nádherný výhled do okolní krajiny a
+                    umožňují proudění světla, které osvěžuje a oživuje interiér.
 
-</script>
+                    Nejvíce ale upoutá venkovní terasa, kde můžete relaxovat a užívat si impozantního výhledu na okolní
+                    přírodu a krajinnou scenérii. Užijte si klid a pohodu v našem jedinečném úkrytu ve větrném mlýně,
+                    kde se
+                    starověká krása setkává s moderním pohodlím.
+                </p>
+            </div>
+            <div class="karta-nabidka">
+                <h3>
+                    Co toto ubytování nabízí?
+                </h3>
+                <ul>
+                    <li>wifi</li>
+                    <li>Společné: bazén</li>
+                    <li>Výtah</li>
+                    <li>Sušička</li>
+                    <li>kychyň</li>
+                </ul>
+            </div>
+
+    </div>
     </section>
 
-</div>     <a href="/signup" id="a_back">&lt</a>
+    <section class="rezervace">
+    <div class="prijezd">  <h4>Datum příjezdu</h4>
+        <div id="arrival-calendar" class="calendar"></div></div>
+<div class="odjezd">
+        <h4> Datum odjezdu
+</h4>
+    <div id="departure-calendar" class="calendar"></div></div>
+    
+    </section>
+    <button type="submit" class="btn flex">Ověřit dostupnost</button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        let slideIndex = 1;
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            const slides = document.getElementsByClassName("slide");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        function openFullscreen(imgElement) {
+            const modal = document.getElementById('myModal');
+            const modalImg = document.getElementById("img01");
+
+            modal.style.display = "block";
+            modalImg.src = imgElement.src;
+        }
+
+        function closeFullscreen() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        showSlides(slideIndex);
+
+        const today = new Date();
+        let arrivalDate = today;
+        let departureDate = today;
+
+        const arrivalCalendar = flatpickr('#arrival-calendar', {
+            inline: true,
+            dateFormat: 'Y-m-d',
+            onClose: function (selectedDates, dateStr, instance) {
+                // Po uzavření kalendáře při příjezdu omezíme možné datum odjezdu
+                if (selectedDates.length > 0) {
+                    const selectedDate = new Date(selectedDates[0]);
+                    departureCalendar.set('minDate', selectedDate);
+                }
+            },
+        });
+
+        const departureCalendar = flatpickr('#departure-calendar', {
+            inline: true,
+            dateFormat: 'Y-m-d',
+            onClose: function (selectedDates, dateStr, instance) {
+                // Po uzavření kalendáře při odjezdu nastavíme datum odjezdu na vybrané datum, pokud je větší než datum příjezdu
+                if (selectedDates.length > 0) {
+                    const selectedDate = new Date(selectedDates[0]);
+                    if (selectedDate < arrivalDate) {
+                        departureCalendar.setDate(arrivalDate);
+                    } else {
+                        departureDate = selectedDate;
+                    }
+                }
+            },
+        });
+    </script>
 
 </body>
+
 </html>

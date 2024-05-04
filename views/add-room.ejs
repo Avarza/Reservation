@@ -8,7 +8,8 @@
 
 </head>
 <body>
-    <h1>Přidat nový pokoj</h1>
+    <section class="container-add-room">
+    <h1 class="add-room-nadpis">Přidat nový pokoj</h1>
     <form action="/add-room" method="POST" id="categoryForm">
         <label for="nazev">Název pokoje:</label>
 <input type="text" id="nazev" name="nazev" required>
@@ -24,19 +25,20 @@
             <label for="kategorie">Vyberte kategorii:</label>
             <input type="hidden" id="selectedCategory" name="selectedCategory">
             <div class="category-images">
-                <img src="../image/camping.png" alt="Apartmán" data-category="camping">
-                <img src="../image/buildings.png" alt="Apartmán" data-category="flat">
-                <img src="../image/house.png" alt="Apartmán" data-category="house">
-                <img src="../image/windmill.png" alt="Apartmán" data-category="windmill">
+                <img src="../image/camping.png" alt="Apartmán" data-category="camping"  title="Stan">
+                <img src="../image/buildings.png" alt="Apartmán" data-category="flat"   title="Byt">
+                <img src="../image/house.png" alt="Apartmán" data-category="house"   title="Dům">
+                <img src="../image/windmill.png" alt="Apartmán" data-category="vetrny-mlyn"   title="Větrný mlýn">
 
             </div>
         <br>
 
-        <label for="fotky">Fotky:</label>
-        <input type="file" id="fotky" name="fotky" accept="image/*" multiple>
+       <div class="label-fotografie-add-room"> <label for="fotky" class="file-input-label">Vyberte fotografie k nahrání...</label>
+        <input type="file" id="fotky" name="fotky" accept="image/*" multiple placeholder="Vyberte fotografie k nahrání...">
         <div id="fotky-preview"></div>
-        <button type="submit">Přidat pokoj</button>
-    </form>
+    </div>
+        <button type="submit" class="btn flex">Přidat pokoj</button>
+    </form></section>
     <script>
    document.addEventListener('DOMContentLoaded', () => {
     const images = document.querySelectorAll('.category-images img');
@@ -73,6 +75,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        const fileInput = document.getElementById('fotky');
+    const fileInputLabel = document.querySelector('.file-input-label');
+
+    fileInput.addEventListener('change', function() {
+        if (this.files.length > 0) {
+            fileInputLabel.textContent = `${this.files.length} souborů vybráno`;
+        } else {
+            fileInputLabel.textContent = 'Vyberte fotografie k nahrání...';
+        }
+    });
     </script>
 
 </body>

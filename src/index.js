@@ -77,7 +77,10 @@ app.get('/add-room', (req, res) => {
 app.get('/verify', (req, res) => {
     res.render('verify-email');
 });
-
+// Stránka pro detail pokoje
+app.get('/detail-pokoje', (req, res) => {
+    res.render('detail-pokoje');
+});
 
 // Registrace uživatele
 app.post('/signup', async (req, res) => {
@@ -85,14 +88,14 @@ app.post('/signup', async (req, res) => {
         const { name, email, password } = req.body;
         const existingUser = await User.findOne({ email });
     // Kontrola délky hesla
-    if (password.length < 8) {
-        return res.status(400).send("Heslo musí mít alespoň 8 znaků.");
-    }
+ //   if (password.length < 8) {
+   //     return res.status(400).send("Heslo musí mít alespoň 8 znaků.");
+   // }
 
     // Kontrola kombinace různých typů znaků
-    if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
-        return res.status(400).send("Heslo musí obsahovat minimálně jedno velké písmeno, jedno malé písmeno, jednu číslici a jeden speciální znak.");
-    }
+  //  if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
+  //      return res.status(400).send("Heslo musí obsahovat minimálně jedno velké písmeno, jedno malé písmeno, jednu číslici a jeden speciální znak.");
+    //}
 
         if (existingUser) {
             return res.status(400).send('Uživatel s touto e-mailovou adresou již existuje.');
@@ -107,6 +110,8 @@ app.post('/signup', async (req, res) => {
             password: hashedPassword,
             verificationToken
         });
+     
+        const { sendVerificationEmail } = require('./emailService.js');
 
         // Odeslat e-mail s ověřovacím odkazem
         sendVerificationEmail(email, verificationToken);
