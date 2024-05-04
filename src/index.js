@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const { v4: uuidv4 } = require('uuid');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 // Připojení k MongoDB
 mongoose.connect("mongodb://localhost:27017/Prihlaseni")
@@ -12,11 +13,11 @@ mongoose.connect("mongodb://localhost:27017/Prihlaseni")
 
 // Schéma uživatele
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  verificationToken: String,
-  isVerified: { type: Boolean, default: false }
+    name: String,
+    email: String,
+    password: String,
+    verificationToken: String,
+    isVerified: { type: Boolean, default: false }
 });
 
 // Model uživatele
@@ -29,7 +30,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: false }));
 
-app.set('view engine',  'ejs');
+app.set('view engine', 'ejs');
 app.use(express.static("public"));
 
 
@@ -41,61 +42,52 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
-// galelrie
 app.get('/gallery', (req, res) => {
     res.render('gallery');
 });
 
-// galerie
 app.get('/contacts', (req, res) => {
     res.render('contacts');
 });
-//stránka pro vyhledávání
+/* // vyhledávání
 app.get('/search', (req, res) => {
     res.render('search');
-});
+}); */
 
-// Stránka pro registraci
 app.get('/signup', (req, res) => {
     res.render('signup');
 });
-
-// Stránka pro přihlášení
 app.get('/login', (req, res) => {
     res.render('login');
 });
-
-// Stránka pro reset hesla
 app.get('/reset-password', (req, res) => {
     res.render('reset-password');
 });
-// Stránka pro přidání pokoje
+app.get('/new-password', (req, res) => {
+    res.render('new-password');
+});
 app.get('/add-room', (req, res) => {
     res.render('add-room');
 });
-// Stránka pro verifikaci emailu
 app.get('/verify', (req, res) => {
     res.render('verify-email');
 });
-// Stránka pro detail pokoje
 app.get('/detail-pokoje', (req, res) => {
     res.render('detail-pokoje');
 });
-
-// Registrace uživatele
 app.post('/signup', async (req, res) => {
     try {
         const { name, email, password } = req.body;
         const existingUser = await User.findOne({ email });
-    // Kontrola délky hesla
- //   if (password.length < 8) {
-   //     return res.status(400).send("Heslo musí mít alespoň 8 znaků.");
-   // }
+        // Kontrola délky hesla
+          if (password.length < 8) {
+             return res.status(400).send("Heslo musí mít alespoň 8 znaků.");
+         }
 
-    // Kontrola kombinace různých typů znaků
-  //  if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
-  //      return res.status(400).send("Heslo musí obsahovat minimálně jedno velké písmeno, jedno malé písmeno, jednu číslici a jeden speciální znak.");
-    //}
+        // Kontrola  různých typů znaků
+          if (!/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/\d/.test(password) || !/[^A-Za-z0-9]/.test(password)) {
+              return res.status(400).send("Heslo musí obsahovat minimálně jedno velké písmeno, jedno malé písmeno, jednu číslici a jeden speciální znak.");
+        }
 
         if (existingUser) {
             return res.status(400).send('Uživatel s touto e-mailovou adresou již existuje.');
@@ -110,7 +102,7 @@ app.post('/signup', async (req, res) => {
             password: hashedPassword,
             verificationToken
         });
-     
+
         const { sendVerificationEmail } = require('./emailService.js');
 
         // Odeslat e-mail s ověřovacím odkazem
@@ -130,20 +122,19 @@ app.post('/login', async (req, res) => {
         const user = await User.findOne({ email });
 
         if (!user) {
-            // Pokud uživatel není nalezen, poslat odpověď s kódem 404
             return res.status(404).send('Uživatel nenalezen.');
         }
 
         const isPasswordMatch = await bcrypt.compare(password, user.password);
         if (!isPasswordMatch) {
-            // Pokud heslo nesouhlasí, poslat odpověď s kódem 401
+            // špatné heslo
             return res.status(401).send('Nesprávné heslo.');
         }
 
-        // Pokud je přihlášení úspěšné, přesměrovat na domovskou stránku
+        // po přihlášení přesměrovat na home stránku
         res.render('home');
     } catch (error) {
-        // Pokud nastane interní chyba serveru, poslat odpověď s kódem 500
+        // interní chyba serveru
         res.status(500).send('Došlo k chybě při přihlašování.');
     }
 });
@@ -151,24 +142,30 @@ app.post('/login', async (req, res) => {
 
 
 
-// reset-password.js
-const router = express.Router();
-
-// Importovat funkci pro odeslání e-mailu pro resetování hesla
+// import fce pro poslání mailu na reset hesla
 const { sendPasswordResetEmail } = require('./emailService');
 
-// Koncový bod pro resetování hesla
-router.post('/reset-password', async (req, res) => {
+// generování resetovacího tokenu
+function generateResetToken() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let token = '';
+    for (let i = 0; i < 20; i++) {
+        token += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return token;
+
+}
+// middleware pro analýzu těla požadavku
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// generování tokenu k resetování hesla
+app.post('/reset-password', async (req, res) => {
     try {
         const { email } = req.body;
 
-        // Zde můžete provést další kroky pro resetování hesla, jako je ověření existence uživatele v databázi
-        // a odeslání e-mailu s instrukcemi pro resetování hesla
-
-        // Odeslat e-mail pro resetování hesla
-        await sendPasswordResetEmail(email);
-
-        // Odpověď s úspěšným oznámením
+        const resetToken = generateResetToken();
+        await sendPasswordResetEmail(email, resetToken);
         res.status(200).json({ message: 'Instrukce pro resetování hesla byly odeslány na váš e-mail.' });
     } catch (error) {
         console.error('Chyba při resetování hesla:', error);
@@ -176,64 +173,95 @@ router.post('/reset-password', async (req, res) => {
     }
 });
 
-module.exports = router;
-
-// Importovat model Pokoj
+// import modelu Pokoj
 const Pokoj = require('./models/Pokoj');
 
-// Obsluha POST požadavku na přidání pokoje
+//  přidání pokoje
 app.post('/add-room', async (req, res) => {
     try {
-        // Získání dat z POST požadavku
         const { nazev, popis, cena, fotky } = req.body;
 
-        // Vytvoření nového pokoje
         const novyPokoj = new Pokoj({
             nazev,
             popis,
             cena,
-            fotky: fotky.split(',') // Pokud jsou URL adresy fotek oddělené čárkou
+            fotky: fotky.split(',') // rozdělení fotek
         });
 
-        // Uložení nového pokoje do databáze
+        // přidání pokoje do databáze
         await novyPokoj.save();
 
-        // Odeslání odpovědi klientovi
+        // info pro klienta
         res.send('Pokoj byl úspěšně přidán.');
     } catch (error) {
-        // Odeslání chybové odpovědi v případě chyby
         console.error('Chyba při přidávání pokoje:', error);
         res.status(500).send('Došlo k chybě při přidávání pokoje.');
     }
 });
-// Nějaká cesta v aplikaci, kde se vykresluje šablona
-app.get('/search', (req, res) => {
- 
 
-    // Předání dat do šablony
-    res.render('search', { pokoje: pokoje });
-});
-
-// Nastavení EJS jako view engine
-app.set('view engine', 'ejs');
-
-// Předpokládáme, že Mongoose je již inicializováno a máte definovaný model Pokoj
-
-app.get('/search', async (req, res) => {
-    try {
-        const query = req.query.query; // Získání vyhledávacího dotazu z URL parametru
-
-        // Vyhledání pokoju v MongoDB kolekci pokojs
-        const pokoje = await Pokoj.find();
-
-        // Odeslání nalezených pokoju do šablony EJS pro zobrazení
-        res.render('search', { pokoje: pokoje });
-    } catch (error) {
-        console.error('Chyba při vyhledávání pokoju:', error);
-        res.status(500).send('Došlo k chybě při vyhledávání pokoju.');
+// schéma pro token
+const tokenSchema = new mongoose.Schema({
+    token: {
+        type: String,
+        required: true
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    createdAt: {
+        type: Date,
+        expires: '1h',
+        default: Date.now
     }
 });
 
+// model Tokenu
+const Token = mongoose.model('Token', tokenSchema);
+
+module.exports = Token;
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// zadání nového hesla
+app.post('/new-password', async (req, res) => {
+    try {
+        const { token, password } = req.body;
+
+        // najde resetovací token v databázi
+        const resetToken = await Token.findOne({ token });
+
+        // nenalezen token
+        if (!resetToken) {
+            return res.status(400).send('Invalid or expired reset token.');
+        }
+
+        // aktualizace hesla v db
+        const user = await User.findById(resetToken.userId);
+
+        // špatný uživatel
+        if (!user) {
+            return res.status(400).send('User not found.');
+        }
+
+        // nastavení new hesla uživatele
+        user.password = password;
+
+        // uložení do db
+        await user.save();
+
+        // mazání resetTokenu
+        await resetToken.remove();
+
+        // info pro uživatele
+        res.status(200).send('Your password has been successfully updated.');
+    } catch (error) {
+        console.error('Error setting new password:', error);
+        res.status(500).send('An error occurred while setting your new password.');
+    }
+});
 app.listen(PORT, () => {
     console.log(`Server běží na adrese http://localhost:${PORT}`);
 });

@@ -8,8 +8,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-
-
 // Funkce pro odeslání ověřovacího e-mailu
 async function sendVerificationEmail(email, verificationToken) {
     try {
@@ -36,7 +34,7 @@ async function sendPasswordResetEmail(email, resetLink) {
             from: 'jituskakroupova@gmail.com', // E-mailová adresa odesílatele
             to: email, // E-mailová adresa příjemce
             subject: 'Reset Password', // Předmět e-mailu
-            html: `<p>Klikněte na následující odkaz pro resetování hesla: <a href="${resetLink}">${resetLink}</a></p>` // Obsah e-mailu
+            html: `<p>Klikněte na následující odkaz pro resetování hesla: <a href="http://localhost:8000/new-password?token=${resetLink}">Klikněte zde pro nastavení nového hesla</a></p>` // Obsah e-mailu
         };
 
         // Odeslání e-mailu
