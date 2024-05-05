@@ -791,12 +791,7 @@ form a {
     max-width: 100rem;
   }
 
-  .btn {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    margin: 3rem;
-  }
+ 
 
   .display-none {
     display: none;
@@ -1140,8 +1135,7 @@ input::placeholder {
   width: 30%;
 }
 
-.btn,
-input[type="file"] {
+  input[type="file"] {
   padding: 1rem;
   border-radius: .2rem;
   background-color: #1B1B1B;
@@ -1179,7 +1173,7 @@ input[type="file"]::-webkit-file-upload-button {
 }
 
 /* Zobrazí nápovědu jako tooltip */
-.btn:hover::before {
+.btn-hint:hover::before {
   content: attr(title);
   position: absolute;
   background-color: #000;
@@ -1193,6 +1187,6 @@ input[type="file"]::-webkit-file-upload-button {
   transition: opacity 0.3s ease;
 }
 
-.btn:hover::before {
+.btn-hint:hover::before {
   opacity: 1;
 }

@@ -25,7 +25,7 @@
             <label for="kategorie">Vyberte kategorii:</label>
             <input type="hidden" id="selectedCategory" name="selectedCategory">
             <div class="category-images">
-                <img src="../image/camping.png" alt="Apartmán" data-category="camping"  title="Stan">
+                <img src="../image/camping.png" alt="Apartmán" data-category="camping"  +q  ěěaw="Stan">
                 <img src="../image/buildings.png" alt="Apartmán" data-category="flat"   title="Byt">
                 <img src="../image/house.png" alt="Apartmán" data-category="house"   title="Dům">
                 <img src="../image/windmill.png" alt="Apartmán" data-category="vetrny-mlyn"   title="Větrný mlýn">
@@ -37,7 +37,7 @@
         <input type="file" id="fotky" name="fotky" accept="image/*" multiple placeholder="Vyberte fotografie k nahrání...">
         <div id="fotky-preview"></div>
     </div>
-        <button type="submit" class="btn flex">Přidat pokoj</button>
+        <button type="submit" class="btn-hint btn flex">Přidat pokoj</button>
     </form></section>
     <script>
    document.addEventListener('DOMContentLoaded', () => {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fotkyPreview = document.getElementById('fotky-preview');
 
             fotkyInput.addEventListener('change', (event) => {
-                fotkyPreview.innerHTML = ''; // Vyčištění předchozích náhledů
+                fotkyPreview.innerHTML = ''; 
 
                 const files = event.target.files;
                 for (const file of files) {
