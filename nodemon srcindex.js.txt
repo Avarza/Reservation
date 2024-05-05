@@ -1,2 +1,0 @@
-zapnutí localhostu v terminalu -> nodemon src/index.js
-mongodb compass už nastavený
