@@ -219,8 +219,6 @@ const tokenSchema = new mongoose.Schema({
 
 // model Tokenu
 const Token = mongoose.model('Token', tokenSchema);
- 
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
